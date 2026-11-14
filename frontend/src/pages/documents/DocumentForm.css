@@ -1,0 +1,455 @@
+
+/* ==============================================
+   DSI — FORMULAIRE DOCUMENTAIRE
+   Fenêtre modale compacte et responsive
+   ============================================== */
+
+.document-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  background: rgb(2 6 23 / 76%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.document-form-modal {
+  width: 100%;
+  max-width: 570px;
+  max-height: calc(100vh - 36px);
+  margin: auto;
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  color: #e2e8f0;
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 13px;
+
+  box-shadow: 0 22px 65px rgb(0 0 0 / 45%);
+  animation: documentModalAppear 0.2s ease-out;
+}
+
+@keyframes documentModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* En-tête */
+
+.document-form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid #293548;
+}
+
+.document-form-heading-content {
+  min-width: 0;
+}
+
+.document-form-eyebrow {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #60a5fa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.document-form-header h2 {
+  margin: 0;
+  color: #f8fafc;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.document-form-header p {
+  margin: 6px 0 0;
+
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.document-form-close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  color: #cbd5e1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  cursor: pointer;
+
+  transition: background 0.2s, color 0.2s;
+}
+
+.document-form-close:hover:not(:disabled) {
+  color: #ffffff;
+  background: #334155;
+}
+
+.document-form-close:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Formulaire */
+
+.document-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 18px 22px 20px;
+  box-sizing: border-box;
+
+  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  font-family: inherit;
+}
+
+.document-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.document-form-field > label:not(.document-file-picker) {
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.document-form-field input:not([type="file"]),
+.document-form-field textarea,
+.document-form-field select {
+  display: block;
+
+  width: 100%;
+  min-height: 37px;
+  padding: 9px 11px;
+  box-sizing: border-box;
+
+  color: #f8fafc;
+  background: #0b1220;
+  border: 1px solid #37465c;
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.document-form-field input::placeholder,
+.document-form-field textarea::placeholder {
+  color: #8190a5;
+  opacity: 1;
+}
+
+.document-form-field input:not([type="file"]):focus,
+.document-form-field textarea:focus,
+.document-form-field select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 14%);
+}
+
+.document-form-field textarea {
+  min-height: 65px;
+  resize: vertical;
+}
+
+.document-form-field select {
+  cursor: pointer;
+}
+
+.document-form-field select option {
+  color: #f8fafc;
+  background: #111827;
+}
+
+/* Fichier */
+
+.document-form-field input.document-file-input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.document-file-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 53px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+
+  color: #bfdbfe;
+  background: #0b1220;
+  border: 1px dashed #475569;
+  border-radius: 8px;
+
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.document-file-picker svg {
+  flex-shrink: 0;
+  color: #60a5fa;
+}
+
+.document-file-picker:hover {
+  background: #142238;
+  border-color: #3b82f6;
+}
+
+.document-file-input:focus-visible + .document-file-picker {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+.document-form-help {
+  color: #8190a5;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Publication */
+
+.document-publish-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 11px 12px;
+  box-sizing: border-box;
+
+  color: #e2e8f0;
+  background: #0b1220;
+  border: 1px solid #29384d;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.document-publish-option > input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.document-publish-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.document-publish-text strong {
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.document-publish-text small {
+  color: #94a3b8;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Erreurs */
+
+.document-form .documents-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  margin: 0;
+  padding: 10px;
+
+  color: #fecaca;
+  background: rgb(127 29 29 / 22%);
+  border: 1px solid #7f1d1d;
+  border-radius: 7px;
+
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.document-form .documents-error svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Boutons */
+
+.document-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 9px;
+
+  padding-top: 13px;
+  border-top: 1px solid #293548;
+}
+
+.document-form-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 36px;
+  padding: 8px 13px;
+  box-sizing: border-box;
+
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.document-form-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.document-form-actions .document-form-cancel {
+  color: #e2e8f0;
+  background: #1e293b;
+  border-color: #3b4a60;
+}
+
+.document-form-actions .document-form-cancel:hover:not(:disabled) {
+  background: #334155;
+}
+
+.document-form-actions .document-form-save {
+  color: #ffffff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.document-form-actions .document-form-save:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+/* Tablettes et petits écrans */
+
+@media (max-width: 600px) {
+  .document-form-overlay {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .document-form-modal {
+    max-width: 100%;
+    max-height: calc(100vh - 24px);
+    border-radius: 10px;
+  }
+
+  .document-form-header {
+    padding: 15px 15px 12px;
+  }
+
+  .document-form-header h2 {
+    font-size: 17px;
+  }
+
+  .document-form {
+    gap: 12px;
+    padding: 14px 15px 16px;
+  }
+
+  .document-form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .document-form-actions button {
+    width: 100%;
+    min-height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .document-form-modal {
+    animation: none;
+  }
+
+  .document-form-modal *,
+  .document-form-modal *::before,
+  .document-form-modal *::after {
+    transition: none !important;
+  }
+}

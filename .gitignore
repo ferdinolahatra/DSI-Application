@@ -1,0 +1,59 @@
+﻿# ==========================================
+# PYTHON / DJANGO
+# ==========================================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+venv/
+.venv/
+env/
+
+# ==========================================
+# SECRETS ET VARIABLES D'ENVIRONNEMENT
+# ==========================================
+
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# BASES DE DONNÉES LOCALES
+# ==========================================
+
+*.sqlite3
+db.sqlite3
+
+# ==========================================
+# FICHIERS DJANGO GÉNÉRÉS
+# ==========================================
+
+backend/staticfiles/
+backend/media/
+
+# ==========================================
+# REACT / NODE
+# ==========================================
+
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.vite/
+npm-debug.log*
+
+# ==========================================
+# WINDOWS / ÉDITEURS
+# ==========================================
+
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+

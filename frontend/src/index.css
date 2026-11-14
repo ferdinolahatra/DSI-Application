@@ -1,0 +1,444 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #070b14;
+  color: #ffffff;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(14, 165, 233, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(99, 102, 241, 0.18),
+      transparent 35%
+    ),
+    #070b14;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.85);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(15px);
+}
+
+.login-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #0ea5e9;
+  color: white;
+}
+
+.login-card h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+}
+
+.login-subtitle {
+  margin: 10px 0 30px;
+  text-align: center;
+  color: #94a3b8;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  outline: none;
+  background: #0f172a;
+  color: white;
+}
+
+.form-group input:focus {
+  border-color: #38bdf8;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 48px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #0ea5e9;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-button:hover {
+  background: #0284c7;
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-error {
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.login-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
+}
+
+.register-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  padding: 10px 22px;
+  color: #0284c7;
+  background: #ffffff;
+  border: 1px solid #38bdf8;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.register-link-button:hover {
+  color: #ffffff;
+  background: #0284c7;
+  border-color: #0284c7;
+  transform: translateY(-1px);
+}
+
+/* =====================================================
+   DSI — SYSTÈME DE THÈME GLOBAL
+===================================================== */
+
+:root {
+  --dsi-accent: #3979ed;
+
+  --dsi-accent-soft:
+    color-mix(in srgb, var(--dsi-accent) 13%, transparent);
+
+  --dsi-accent-border:
+    color-mix(in srgb, var(--dsi-accent) 38%, #aab7ca);
+
+  --dsi-accent-surface:
+    color-mix(in srgb, var(--dsi-accent) 7%, #ffffff);
+
+  --dsi-accent-text: var(--dsi-accent);
+}
+
+/* Couleurs globales selon le thème */
+
+html[data-dsi-theme="dark"] {
+  --dsi-app-background: #0b1220;
+  --dsi-card-background: #151f30;
+  --dsi-border: #293a51;
+  --dsi-text: #f1f5f9;
+  --dsi-muted: #9aa9bd;
+
+  --dsi-accent-surface:
+    color-mix(in srgb, var(--dsi-accent) 12%, #151f30);
+
+  --dsi-accent-border:
+    color-mix(in srgb, var(--dsi-accent) 40%, #293a51);
+}
+
+html[data-dsi-theme="light"] {
+  --dsi-app-background: #f5f7fb;
+  --dsi-card-background: #ffffff;
+  --dsi-border: #e2e8f0;
+  --dsi-text: #172033;
+  --dsi-muted: #718096;
+
+  --dsi-accent-surface:
+    color-mix(in srgb, var(--dsi-accent) 7%, #ffffff);
+
+  --dsi-accent-border:
+    color-mix(in srgb, var(--dsi-accent) 35%, #dce5f1);
+}
+
+/* Texte et sélection */
+
+::selection {
+  color: #ffffff;
+  background: var(--dsi-accent);
+}
+
+/* Liens */
+
+a {
+  accent-color: var(--dsi-accent);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--dsi-accent);
+  outline-offset: 3px;
+}
+
+/* Champs de formulaire */
+
+input,
+select,
+textarea {
+  accent-color: var(--dsi-accent);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline-color: var(--dsi-accent);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  border-color: var(--dsi-accent) !important;
+  box-shadow: 0 0 0 3px var(--dsi-accent-soft);
+}
+
+/* Boutons principaux */
+
+.btn-primary,
+.button-primary,
+.primary-button,
+.primary-btn,
+button[data-variant="primary"] {
+  border-color: var(--dsi-accent) !important;
+  color: #ffffff !important;
+  background: var(--dsi-accent) !important;
+}
+
+.btn-primary:hover,
+.button-primary:hover,
+.primary-button:hover,
+.primary-btn:hover,
+button[data-variant="primary"]:hover {
+  filter: brightness(0.92);
+}
+
+/* Navigation latérale : liens sélectionnés */
+
+.sidebar .active,
+.sidebar a.active,
+.sidebar button.active,
+.app-sidebar .active,
+.app-sidebar a.active,
+.app-sidebar button.active,
+.sidebar-menu .active,
+.nav-menu .active,
+[class*="sidebar" i] [aria-current="page"] {
+  border-color: var(--dsi-accent-border) !important;
+  color: var(--dsi-accent) !important;
+  background: var(--dsi-accent-soft) !important;
+}
+
+/* Icônes des éléments sélectionnés */
+
+.sidebar .active svg,
+.app-sidebar .active svg,
+[class*="sidebar" i] [aria-current="page"] svg {
+  color: var(--dsi-accent) !important;
+}
+
+/* Éléments de navigation au survol */
+
+.sidebar a:hover,
+.sidebar button:hover,
+.app-sidebar a:hover,
+.app-sidebar button:hover {
+  border-color: var(--dsi-accent-border);
+}
+
+/* Pagination et boutons de sélection */
+
+.pagination .active,
+.page-item.active,
+.tab-button.active,
+.segment-button.active {
+  color: #ffffff !important;
+  border-color: var(--dsi-accent) !important;
+  background: var(--dsi-accent) !important;
+}
+
+/* Cases à cocher */
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--dsi-accent);
+}
+
+/* Barres de progression */
+
+progress {
+  accent-color: var(--dsi-accent);
+}
+
+/* Couleur des graphiques Recharts */
+
+.recharts-cartesian-axis-tick-value {
+  fill: var(--dsi-muted);
+}
+
+/* Petits éléments décoratifs utilisant la couleur principale */
+
+.dsi-accent {
+  color: var(--dsi-accent) !important;
+}
+
+.dsi-accent-background {
+  color: #ffffff !important;
+  background: var(--dsi-accent) !important;
+}
+
+.dsi-accent-border {
+  border-color: var(--dsi-accent) !important;
+}
+
+/* Préserver les transitions du thème */
+
+body.dsi-reduced-motion *,
+body.dsi-reduced-motion *::before,
+body.dsi-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* =====================================================
+   RÉPONSES AUX COMMENTAIRES
+===================================================== */
+
+.ticket-comment-reply-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  padding: 7px 12px;
+  border: 1px solid var(--dsi-border, #334155);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--dsi-primary, #38bdf8);
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ticket-comment-reply-button:hover {
+  background: rgba(56, 189, 248, 0.1);
+}
+
+.ticket-comment-replies {
+  margin-top: 15px;
+  margin-left: 22px;
+  padding-left: 15px;
+  border-left: 2px solid var(--dsi-primary, #38bdf8);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ticket-comment-reply {
+  padding: 13px;
+  border-radius: 9px;
+  background: var(--dsi-card-background, rgba(148, 163, 184, 0.07));
+}
+
+.ticket-comment-reply-form {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ticket-comment-reply-form label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ticket-comment-reply-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  border: 1px solid var(--dsi-border, #334155);
+  border-radius: 8px;
+  background: var(--dsi-card-background, #151f30);
+  color: inherit;
+  resize: vertical;
+  font: inherit;
+}
+
+.ticket-comment-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+

@@ -1,0 +1,1698 @@
+
+/* =========================================================
+   INTERVENTIONS — PLATEFORME DSI
+   Thème sombre, design professionnel et responsive
+   Ordinateur, tablette, téléphone et mode paysage
+   ========================================================= */
+
+/* =========================================================
+   1. BASE DE LA PAGE
+   ========================================================= */
+
+.interventions-page,
+.interventions-page * {
+  box-sizing: border-box;
+}
+
+.interventions-page {
+  --intervention-bg: #070b14;
+  --intervention-surface: #0f172a;
+  --intervention-surface-hover: #111e32;
+  --intervention-border: rgba(148, 163, 184, 0.16);
+  --intervention-text: #f8fafc;
+  --intervention-muted: #94a3b8;
+  --intervention-cyan: #38bdf8;
+  --intervention-blue: #0ea5e9;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  padding: 26px 28px 32px;
+  overflow-x: clip;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(14, 165, 233, 0.09),
+      transparent 32%
+    ),
+    var(--intervention-bg);
+
+  color: var(--intervention-text);
+  font-family: Arial, sans-serif;
+}
+
+.interventions-page button,
+.interventions-page input,
+.interventions-page select {
+  font: inherit;
+}
+
+.interventions-page button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.interventions-page button:focus-visible,
+.interventions-page input:focus-visible,
+.interventions-page select:focus-visible {
+  outline: 2px solid var(--intervention-cyan);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   2. EN-TÊTE
+   ========================================================= */
+
+.interventions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 25px;
+}
+
+.interventions-header > div {
+  min-width: 0;
+}
+
+.interventions-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 10px;
+
+  color: var(--intervention-cyan);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  line-height: 1.5;
+}
+
+.interventions-header h1 {
+  margin: 0;
+
+  color: var(--intervention-text);
+  font-size: clamp(25px, 2.3vw, 32px);
+  font-weight: 800;
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+}
+
+.interventions-header > div > p {
+  max-width: 700px;
+  margin: 9px 0 0;
+
+  color: var(--intervention-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   3. BOUTON ACTUALISER
+   ========================================================= */
+
+.interventions-refresh {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 42px;
+  padding: 10px 15px;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background: var(--intervention-surface);
+  color: #e2e8f0;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.interventions-refresh:hover:not(:disabled) {
+  border-color: var(--intervention-cyan);
+  background: var(--intervention-surface-hover);
+  color: var(--intervention-cyan);
+}
+
+.interventions-refresh:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.interventions-spinning {
+  animation: interventions-spin 1s linear infinite;
+}
+
+@keyframes interventions-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   4. MESSAGE D'ERREUR
+   ========================================================= */
+
+.interventions-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+
+  border: 1px solid rgba(248, 113, 113, 0.32);
+  border-radius: 11px;
+
+  background: rgba(127, 29, 29, 0.18);
+  color: #fca5a5;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.interventions-alert > svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.interventions-alert > span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.interventions-alert button {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 7px;
+
+  background: transparent;
+  color: #fecaca;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.interventions-alert button:hover {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+/* =========================================================
+   5. CARTES STATISTIQUES
+   ========================================================= */
+
+.interventions-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+.interventions-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+  min-height: 90px;
+  padding: 17px;
+
+  border: 1px solid var(--intervention-border);
+  border-radius: 15px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.97),
+    rgba(15, 23, 42, 0.78)
+  );
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.interventions-summary-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.interventions-summary-icon {
+  display: flex;
+  flex: 0 0 43px;
+  align-items: center;
+  justify-content: center;
+
+  width: 43px;
+  height: 43px;
+
+  border-radius: 12px;
+}
+
+.interventions-summary-icon.blue {
+  background: rgba(14, 165, 233, 0.14);
+  color: #38bdf8;
+}
+
+.interventions-summary-icon.green {
+  background: rgba(34, 197, 94, 0.13);
+  color: #4ade80;
+}
+
+.interventions-summary-icon.orange {
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
+}
+
+.interventions-summary-icon.purple {
+  background: rgba(139, 92, 246, 0.14);
+  color: #a78bfa;
+}
+
+.interventions-summary-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  min-width: 0;
+}
+
+.interventions-summary-card span {
+  display: block;
+  color: var(--intervention-muted);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.interventions-summary-card strong {
+  display: block;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+/* =========================================================
+   6. CARTE PRINCIPALE
+   ========================================================= */
+
+.interventions-list-panel {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid var(--intervention-border);
+  border-radius: 16px;
+
+  background: rgba(15, 23, 42, 0.89);
+
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.interventions-list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  min-width: 0;
+  padding: 21px 22px 17px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.interventions-list-heading > div:first-child {
+  min-width: 0;
+}
+
+.interventions-list-heading h2 {
+  margin: 0;
+
+  color: var(--intervention-text);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.interventions-list-heading p {
+  margin: 6px 0 0;
+
+  color: var(--intervention-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   7. INDICATEUR API
+   ========================================================= */
+
+.interventions-api-indicator {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 7px 10px;
+
+  border: 1px solid rgba(34, 197, 94, 0.17);
+  border-radius: 20px;
+
+  background: rgba(34, 197, 94, 0.07);
+  color: #86efac;
+
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.interventions-api-indicator > span {
+  display: block;
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: #4ade80;
+
+  box-shadow: 0 0 9px rgba(74, 222, 128, 0.35);
+}
+
+/* =========================================================
+   8. FILTRES
+   ========================================================= */
+
+.interventions-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  width: 100%;
+  min-width: 0;
+  padding: 18px 22px 20px;
+}
+
+.interventions-search {
+  display: flex;
+  flex: 1 1 280px;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 43px;
+  padding: 0 12px;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background: #0b1220;
+  color: #64748b;
+
+  transition: border-color 0.2s ease;
+}
+
+.interventions-search:focus-within {
+  border-color: var(--intervention-cyan);
+  color: var(--intervention-cyan);
+}
+
+.interventions-search > svg {
+  flex: 0 0 auto;
+}
+
+.interventions-search input {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #f8fafc;
+
+  font-size: 12px;
+}
+
+.interventions-search input::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.interventions-search input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+/* Champs de filtre */
+
+.interventions-select {
+  display: flex;
+  flex: 0 1 180px;
+  align-items: center;
+  gap: 7px;
+
+  min-width: 0;
+  min-height: 43px;
+  padding: 0 10px;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background: #0b1220;
+  color: #8192a9;
+
+  transition: border-color 0.2s ease;
+}
+
+.interventions-select:focus-within {
+  border-color: var(--intervention-cyan);
+}
+
+.interventions-select > svg {
+  flex: 0 0 auto;
+}
+
+.interventions-select select {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 0 3px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: #e2e8f0;
+  color-scheme: dark;
+
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.interventions-select select option {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* Effacer les filtres */
+
+.interventions-clear {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 41px;
+  padding: 9px 13px;
+
+  border: 1px solid #334155;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #94a3b8;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.interventions-clear:hover {
+  border-color: var(--intervention-cyan);
+  background: rgba(56, 189, 248, 0.07);
+  color: var(--intervention-cyan);
+}
+
+/* =========================================================
+   9. TABLEAU DES INTERVENTIONS
+   ========================================================= */
+
+.interventions-table-wrap {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: #334155 #0b1220;
+  scrollbar-width: thin;
+}
+
+.interventions-table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.interventions-table-wrap::-webkit-scrollbar-track {
+  background: #0b1220;
+}
+
+.interventions-table-wrap::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #334155;
+}
+
+.interventions-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.interventions-table {
+  width: 100%;
+  min-width: 900px;
+
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  text-align: left;
+}
+
+.interventions-table thead {
+  background: #111c30;
+}
+
+.interventions-table th {
+  padding: 14px 15px;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+  border-bottom: 1px solid #334155;
+
+  color: #a8b8cc;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.interventions-table td {
+  padding: 15px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.09);
+
+  color: #e2e8f0;
+  font-size: 11px;
+  line-height: 1.6;
+  vertical-align: middle;
+}
+
+.interventions-table tbody tr {
+  background: transparent;
+
+  transition: background-color 0.18s ease;
+}
+
+.interventions-table tbody tr:hover {
+  background: rgba(56, 189, 248, 0.035);
+}
+
+.interventions-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* =========================================================
+   10. TICKET ASSOCIÉ
+   ========================================================= */
+
+.intervention-ticket-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 125px;
+  max-width: 230px;
+}
+
+.intervention-ticket-cell strong {
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.intervention-ticket-cell span {
+  color: #8192a9;
+  font-size: 10px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   11. TECHNICIEN
+   ========================================================= */
+
+.intervention-person {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 110px;
+  max-width: 220px;
+
+  color: #cbd5e1;
+}
+
+.intervention-person svg {
+  flex: 0 0 auto;
+  color: #94a3b8;
+}
+
+.intervention-person span {
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   12. DURÉE ET DATE
+   ========================================================= */
+
+.intervention-duration {
+  color: #e2e8f0;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.intervention-date {
+  min-width: 105px;
+  color: #94a3b8;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   13. BADGES DE RÉSULTAT
+   ========================================================= */
+
+.intervention-result,
+.intervention-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 100%;
+  padding: 6px 9px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.45;
+
+  white-space: nowrap;
+}
+
+/* Résultats positifs */
+
+.intervention-result.result-resolu,
+.intervention-result.result-resolue,
+.intervention-result.result-termine,
+.intervention-result.result-terminee,
+.intervention-result.result-succes,
+.intervention-result.result-reussi {
+  border-color: rgba(34, 197, 94, 0.17);
+  background: rgba(34, 197, 94, 0.11);
+  color: #4ade80;
+}
+
+/* Résultats partiels */
+
+.intervention-result.result-partiel,
+.intervention-result.result-partielle {
+  border-color: rgba(245, 158, 11, 0.18);
+  background: rgba(245, 158, 11, 0.11);
+  color: #fbbf24;
+}
+
+/* Résultats négatifs */
+
+.intervention-result.result-echec,
+.intervention-result.result-non_resolu {
+  border-color: rgba(239, 68, 68, 0.18);
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+/* Résultat inconnu */
+
+.intervention-result.result-non_renseigne {
+  border-color: rgba(148, 163, 184, 0.15);
+  background: rgba(100, 116, 139, 0.12);
+  color: #94a3b8;
+}
+
+/* =========================================================
+   14. BADGES DE STATUT FINAL
+   ========================================================= */
+
+.intervention-status.status-en_cours {
+  border-color: rgba(129, 140, 248, 0.17);
+  background: rgba(129, 140, 248, 0.12);
+  color: #a5b4fc;
+}
+
+.intervention-status.status-en_attente {
+  border-color: rgba(245, 158, 11, 0.17);
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+}
+
+.intervention-status.status-resolue,
+.intervention-status.status-resolu,
+.intervention-status.status-cloturee,
+.intervention-status.status-cloture {
+  border-color: rgba(34, 197, 94, 0.17);
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+}
+
+.intervention-status.status-nouvelle,
+.intervention-status.status-nouveau {
+  border-color: rgba(56, 189, 248, 0.17);
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+}
+
+.intervention-status.status-annulee {
+  border-color: rgba(239, 68, 68, 0.17);
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+.intervention-status.status-non_renseigne {
+  border-color: rgba(148, 163, 184, 0.15);
+  background: rgba(100, 116, 139, 0.12);
+  color: #94a3b8;
+}
+
+/* =========================================================
+   15. BOUTON VOIR LES DÉTAILS
+   ========================================================= */
+
+.intervention-view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+  padding: 0;
+
+  border: 1px solid rgba(56, 189, 248, 0.24);
+  border-radius: 9px;
+
+  background: rgba(14, 165, 233, 0.09);
+  color: #38bdf8;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.intervention-view-button:hover {
+  transform: translateY(-1px);
+  border-color: #0ea5e9;
+  background: #0ea5e9;
+  color: #ffffff;
+}
+
+/* =========================================================
+   16. AUCUNE DONNÉE
+   ========================================================= */
+
+.interventions-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
+  min-height: 220px;
+  padding: 25px 20px;
+
+  color: #8192a9;
+  text-align: center;
+}
+
+.interventions-empty svg {
+  color: #38bdf8;
+}
+
+.interventions-empty strong {
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.interventions-empty span {
+  max-width: 420px;
+  color: #8192a9;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* =========================================================
+   17. CHARGEMENT
+   ========================================================= */
+
+.interventions-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 20px;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* =========================================================
+   18. FOND DE LA FENÊTRE DE DÉTAILS
+   ========================================================= */
+
+.intervention-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  overflow-y: auto;
+
+  background: rgba(2, 6, 23, 0.78);
+
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+/* =========================================================
+   19. FENÊTRE DE DÉTAILS
+   ========================================================= */
+
+.intervention-modal {
+  width: min(100%, 680px);
+  max-width: 100%;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  overflow: hidden;
+  margin: auto;
+
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 17px;
+
+  background: #0f172a;
+  color: #f8fafc;
+
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+}
+
+/* =========================================================
+   20. EN-TÊTE DE LA FENÊTRE
+   ========================================================= */
+
+.intervention-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  min-width: 0;
+  padding: 21px 23px;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(7, 11, 20, 0.26);
+}
+
+.intervention-modal-header > div:first-child {
+  min-width: 0;
+}
+
+.intervention-modal-header .interventions-eyebrow {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+
+.intervention-modal-header h2 {
+  margin: 0;
+
+  color: #f8fafc;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.intervention-modal-close {
+  display: flex;
+  flex: 0 0 38px;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+  padding: 0;
+
+  border: 1px solid #334155;
+  border-radius: 10px;
+
+  background: #111e32;
+  color: #94a3b8;
+
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.intervention-modal-close:hover {
+  border-color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+/* =========================================================
+   21. CONTENU DE LA FENÊTRE
+   ========================================================= */
+
+.intervention-modal-body {
+  min-width: 0;
+  padding: 22px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: #334155 #0f172a;
+  scrollbar-width: thin;
+}
+
+/* Ticket associé */
+
+.intervention-modal-ticket {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  margin-bottom: 20px;
+  padding: 15px;
+
+  border: 1px solid rgba(56, 189, 248, 0.19);
+  border-radius: 12px;
+
+  background: rgba(14, 165, 233, 0.075);
+  color: #38bdf8;
+}
+
+.intervention-modal-ticket > svg {
+  flex: 0 0 auto;
+}
+
+.intervention-modal-ticket > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.intervention-modal-ticket span {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.intervention-modal-ticket strong {
+  color: #7dd3fc;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   22. GRILLE DES DÉTAILS
+   ========================================================= */
+
+.intervention-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  min-width: 0;
+  margin-bottom: 21px;
+}
+
+.intervention-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  min-width: 0;
+  padding: 14px;
+
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 11px;
+
+  background: rgba(7, 11, 20, 0.28);
+}
+
+.intervention-detail-item > svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #38bdf8;
+}
+
+.intervention-detail-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.intervention-detail-item span {
+  color: #8192a9;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.intervention-detail-item strong {
+  color: #e2e8f0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   23. DESCRIPTION ET SOLUTION
+   ========================================================= */
+
+.intervention-detail-section {
+  min-width: 0;
+  margin-top: 14px;
+  padding: 16px;
+
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 11px;
+
+  background: rgba(7, 11, 20, 0.24);
+}
+
+.intervention-detail-section h3 {
+  margin: 0 0 10px;
+
+  color: #38bdf8;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.intervention-detail-section p {
+  margin: 0;
+
+  color: #cbd5e1;
+  font-size: 12px;
+  line-height: 1.85;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* =========================================================
+   24. STATUT FINAL DANS LES DÉTAILS
+   ========================================================= */
+
+.intervention-modal-final-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 18px;
+  padding: 14px 16px;
+
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  border-radius: 11px;
+
+  background: rgba(129, 140, 248, 0.08);
+}
+
+.intervention-modal-final-status span {
+  color: #a5b4fc;
+  font-size: 11px;
+}
+
+.intervention-modal-final-status strong {
+  color: #c7d2fe;
+  font-size: 12px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   25. PIED DE LA FENÊTRE
+   ========================================================= */
+
+.intervention-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 15px 22px;
+
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(7, 11, 20, 0.22);
+}
+
+.intervention-modal-footer button {
+  min-width: 95px;
+  min-height: 39px;
+  padding: 9px 15px;
+
+  border: 1px solid #334155;
+  border-radius: 9px;
+
+  background: #111e32;
+  color: #e2e8f0;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.intervention-modal-footer button:hover {
+  border-color: #38bdf8;
+  background: #15243b;
+}
+
+/* =========================================================
+   26. GRANDS ÉCRANS — 1400 PX ET PLUS
+   ========================================================= */
+
+@media (min-width: 1400px) {
+  .interventions-page {
+    padding: 28px;
+  }
+
+  .interventions-summary {
+    gap: 16px;
+  }
+
+  .interventions-summary-card {
+    padding: 19px;
+  }
+
+  .interventions-list-heading {
+    padding: 22px 24px 17px;
+  }
+
+  .interventions-filters {
+    padding: 18px 24px 19px;
+  }
+
+  .interventions-table th,
+  .interventions-table td {
+    padding: 15px 16px;
+  }
+}
+
+/* =========================================================
+   27. ÉCRANS MOYENS — 1200 PX ET MOINS
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .interventions-page {
+    padding: 22px 20px;
+  }
+
+  .interventions-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .interventions-summary-card {
+    min-width: 0;
+  }
+
+  .interventions-filters {
+    gap: 8px;
+  }
+
+  .interventions-search {
+    flex-basis: 100%;
+  }
+
+  .interventions-select {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+
+  .interventions-select select {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   28. TABLETTES — 900 PX ET MOINS
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .interventions-page {
+    padding: 20px 16px;
+  }
+
+  .interventions-header {
+    align-items: flex-start;
+  }
+
+  .interventions-header h1 {
+    font-size: 26px;
+  }
+
+  .interventions-header > div > p {
+    max-width: 540px;
+  }
+
+  .interventions-list-panel {
+    border-radius: 12px;
+  }
+
+  .interventions-list-heading {
+    padding: 17px 16px;
+  }
+
+  .interventions-filters {
+    padding: 16px 16px;
+  }
+
+  .interventions-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .interventions-table {
+    min-width: 820px;
+  }
+
+  .intervention-modal {
+    width: min(100%, 600px);
+  }
+}
+
+/* =========================================================
+   29. MOBILES — 650 PX ET MOINS
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .interventions-page {
+    width: 100%;
+    min-width: 0;
+    padding: 16px 12px;
+  }
+
+  .interventions-header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .interventions-header h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .interventions-header > div > p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .interventions-refresh {
+    align-self: flex-start;
+    min-height: 37px;
+  }
+
+  .interventions-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-bottom: 16px;
+  }
+
+  .interventions-summary-card {
+    align-items: flex-start;
+    gap: 9px;
+    padding: 12px 10px;
+    border-radius: 10px;
+  }
+
+  .interventions-summary-icon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    border-radius: 8px;
+  }
+
+  .interventions-summary-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .interventions-summary-card > div:last-child {
+    gap: 4px;
+  }
+
+  .interventions-summary-card span {
+    font-size: 9px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .interventions-summary-card strong {
+    font-size: 21px;
+  }
+
+  .interventions-list-heading {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px 12px;
+  }
+
+  .interventions-list-heading h2 {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .interventions-list-heading p {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .interventions-api-indicator {
+    padding: 6px 8px;
+    font-size: 9px;
+  }
+
+  .interventions-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    padding: 0 12px 14px;
+  }
+
+  .interventions-search {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 40px;
+  }
+
+  .interventions-search input {
+    font-size: 11px;
+  }
+
+  .interventions-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 39px;
+    padding: 0 8px;
+    gap: 5px;
+  }
+
+  .interventions-select select {
+    width: 100%;
+    min-width: 0;
+    font-size: 10px;
+  }
+
+  .interventions-clear {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 35px;
+  }
+
+  .interventions-table {
+    min-width: 780px;
+  }
+
+  .interventions-table th {
+    padding: 12px 10px;
+    font-size: 9px;
+  }
+
+  .interventions-table td {
+    padding: 12px 10px;
+    font-size: 10px;
+  }
+
+  .interventions-empty {
+    min-height: 175px;
+    padding: 15px;
+  }
+
+  .interventions-empty strong {
+    font-size: 12px;
+  }
+
+  .interventions-empty span {
+    font-size: 10px;
+  }
+
+  .interventions-loading {
+    padding: 15px 10px;
+    font-size: 10px;
+  }
+
+  .interventions-alert {
+    gap: 8px;
+    padding: 11px;
+    font-size: 11px;
+  }
+
+  /* Fenêtre des détails sur téléphone */
+
+  .intervention-modal-backdrop {
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .intervention-modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    border-radius: 13px;
+  }
+
+  .intervention-modal-header {
+    padding: 16px;
+  }
+
+  .intervention-modal-header h2 {
+    font-size: 19px;
+    overflow-wrap: anywhere;
+  }
+
+  .intervention-modal-body {
+    padding: 15px;
+  }
+
+  .intervention-detail-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .intervention-detail-item {
+    padding: 11px;
+  }
+
+  .intervention-detail-section {
+    padding: 13px;
+  }
+
+  .intervention-detail-section p {
+    font-size: 11px;
+  }
+
+  .intervention-modal-final-status {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .intervention-modal-footer {
+    padding: 13px 15px;
+  }
+}
+
+/* =========================================================
+   30. TRÈS PETITS TÉLÉPHONES — 380 PX ET MOINS
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .interventions-page {
+    padding: 13px 9px;
+  }
+
+  .interventions-header h1 {
+    font-size: 22px;
+  }
+
+  .interventions-summary {
+    gap: 7px;
+  }
+
+  .interventions-summary-card {
+    flex-direction: column;
+    gap: 8px;
+    padding: 11px;
+  }
+
+  .interventions-summary-card strong {
+    font-size: 20px;
+  }
+
+  .interventions-list-heading {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .interventions-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interventions-search,
+  .interventions-clear {
+    grid-column: auto;
+  }
+
+  .interventions-select {
+    grid-column: 1;
+  }
+
+  .interventions-list-heading,
+  .interventions-filters {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .interventions-alert {
+    flex-wrap: wrap;
+  }
+
+  .interventions-alert button {
+    margin-left: auto;
+  }
+
+  .intervention-modal-header,
+  .intervention-modal-body {
+    padding: 13px;
+  }
+
+  .intervention-modal-header h2 {
+    font-size: 17px;
+  }
+
+  .intervention-modal-ticket {
+    gap: 9px;
+    padding: 11px;
+  }
+}
+
+/* =========================================================
+   31. TÉLÉPHONE EN MODE PAYSAGE
+   ========================================================= */
+
+@media (max-height: 500px) and (max-width: 900px) {
+  .intervention-modal-backdrop {
+    align-items: flex-start;
+  }
+
+  .intervention-modal {
+    max-height: none;
+    max-height: initial;
+    margin: 8px 0;
+  }
+
+  .intervention-modal-header {
+    padding: 12px 16px;
+  }
+
+  .intervention-modal-body {
+    padding: 13px 16px;
+  }
+
+  .intervention-modal-footer {
+    padding: 10px 16px;
+  }
+}
+
+/* =========================================================
+   32. ACCESSIBILITÉ
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .interventions-page *,
+  .interventions-page *::before,
+  .interventions-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
